@@ -1,0 +1,10 @@
+/* You can add global styles to this file, and also import other style files */
+.imageClass{
+    height: 170px;
+    width:170px
+}
+
+.vertical-align{
+display: flex;
+align-items:center;
+}

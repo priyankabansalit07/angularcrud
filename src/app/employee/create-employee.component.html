@@ -1,0 +1,93 @@
+<form #empForm="ngForm" (ngSubmit)="saveEmployee(empForm)">
+    <!-- ngNativeValidate -- use this is Form tag to enable browser inbuilt validation. By default built in validation of browser is off in angular 4 and later versions -->
+    <!-- empForm is TemplateFormVariable which is referenced to ngForm(ngForm is directive which is automatically attached to form when angular sees form tag) 
+    To use this include FormsModule in app.module.ts-->
+    <div class="container">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <h4>Create Employee</h4>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="form-group" [class.has-error]="fullNameControl.invalid && fullNameControl.touched" [class.has-success]="fullNameControl.valid">
+                    <label for=txtFullName class="control-label">Full Name</label>
+                    <input type="text" required name="fullname" id="txtFullName" [(ngModel)]="fn" class="form-control" #fullNameControl="ngModel">
+                    <span class="help-block" *ngIf="fullNameControl.invalid && fullNameControl.touched" >Full Name is required</span>
+                </div>
+                <div class="form-group" [class.has-error]="emailControl.invalid && emailControl.touched" [class.has-success]="emailControl.valid">
+                    <label for=txtEmail class="control-label">Email</label>
+                    <input type="text" required name="email" id="txtEmail" [(ngModel)]="email" class="form-control" #emailControl="ngModel">
+                    <span class="help-block" *ngIf="emailControl.invalid && emailControl.touched">Email is required</span>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="form-control">
+                        <label class="radio-inline">
+                            <input type="radio" value="male" name=gender [(ngModel)]=gender>
+                            Male</label>
+                        <label class="radio-inline">
+                            <input type="radio" value="female" name=gender [(ngModel)]=gender>
+                            Female</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for=txtph>Phone Number</label>
+                    <input type="text" name="ph" id="txtph" [(ngModel)]="phone" class="form-control" maxlength="10">
+                </div>
+                <!-- Disabled Control doesnot create property in form as in .net -->
+                <div class="form-group">
+                    <label>Contact Preference</label>
+                    <div class="form-control">
+                        <label class="radio-inline">
+                            <input type="radio" value="phone" name=contactPreference [(ngModel)]=contactPreference>
+                            Phone</label>
+                        <label class="radio-inline">
+                            <input type="radio" value="email" name=contactPreference [(ngModel)]=contactPreference>
+                            Email</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-control">
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="isActive" [(ngModel)]="isActive"> Is
+                            Active
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Department</label>
+                    <select id="ddlDept" name="dept" [(ngModel)]="dept" class="form-control">
+                        <option *ngFor="let d of lstdept" [value]="d.id">{{d.name}}</option>
+                    </select>
+                </div>
+                <div class=row>
+                    <div class="form-group col-md-3">
+                        <label>Date Of Birth</label>
+                        <input type="text" autocomplete="off" [bsConfig]="datepickerConfig" class="form-control"
+                            bsDatepicker [(ngModel)]="dob" name="dob" placement="right" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-3">
+                        <label>Photo path</label>
+                        <input type="text" id="txtphotopath" name="photoPath" [(ngModel)]="photoPath"
+                            class="form-control">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <button type="button" class="btn btn-primary"
+                        (click)="toggelPhotoPreview()">{{ photopreview ?'Hide Preview':'Show Preview'}}</button>
+                </div>
+                <div class="form-group">
+                    <img [src]="photoPath" *ngIf="photopreview" style="height: 200px;width:200px" />
+                </div>
+            </div>
+            <div class="panel-footer">
+                <input type="submit" value="Save" class="btn btn-primary"  [disabled]="empForm.invalid">
+            </div>
+        </div>
+    </div>
+    Angular Generated Form Model: {{empForm.value | json}}
+</form>

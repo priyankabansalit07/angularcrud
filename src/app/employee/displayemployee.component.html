@@ -1,0 +1,95 @@
+<app-accordian [title]="emp.name" [isHidden]="true" [justViewed]="selectedEmployeeId===emp.id">
+    <div class="col-xs-10 empPanelBody">
+        <div class="row vertical-align"> 
+            <div class="col-xs-4">
+                <img [src]="emp.photoPath" class="imageClass" />
+            </div>
+            <div class="col-xs-8">
+                <div class="row">
+                    <div class="col-xs-6">
+                        Gender
+                    </div>
+                    <div class="col-xs-6">
+                        :{{emp.gender}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        Email
+                    </div>
+                    <div class="col-xs-6">
+                        :{{emp.email}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        Phone Number
+                    </div>
+                    <div class="col-xs-6">
+                        :{{emp.phoneNumber}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        Contact Preference
+                    </div>
+                    <div class="col-xs-6">
+                        :{{emp.contactPreference}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        Date Of Birth
+                    </div>
+                    <div class="col-xs-6">
+                        :{{emp.dateOfBirth | date}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        Department
+                    </div>
+                    <div class="col-xs-6">
+                        :{{emp.department}}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-6">
+                        Is Active
+                    </div>
+                    <div class="col-xs-6">
+                        :{{emp.isActive}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="empPanelFooter">
+    <button class="btn btn-primary" (click)="onClick(emp.id,emp.name)">View</button>
+    <button class="btn btn-primary" (click)="editEmployee()">Edit</button>
+    <span *ngIf="confirmdelete">
+        <span>Are you sure you want to delete?</span>
+        <span>
+            <button class="btn btn-danger" (click)="deleteEmployee()">Yes</button>
+            <button class="btn btn-primary" (click)="confirmdelete=false">No</button>
+        </span>
+    </span>
+    <button class="btn btn-danger" (click)="confirmdelete=true" *ngIf="!confirmdelete">Delete</button>
+</div>
+</app-accordian>
+
+<!-- <div class="panel panel-primary" >
+     <div class="panel-heading pointerHand" (click)="isHidden=!isHidden"> 
+         
+        <h3 class="panel-title" >
+            {{emp.name | uppercase}}
+        </h3>
+
+    </div>
+    <div class="panel-body" [hidden]="isHidden">
+         
+    </div>
+    <div class="panel-footer" [hidden]="isHidden">
+       
+    </div>
+</div> -->

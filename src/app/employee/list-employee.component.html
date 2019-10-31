@@ -1,0 +1,30 @@
+<div class="container">
+
+    <h1>{{ShowEmpName}}</h1>
+    <h2>{{showgender}}</h2>
+
+    <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search By Name" style="width: 300px" [(ngModel)]="searchTerm" />
+    </div> 
+
+    <div class="form-group">
+        <button (click)="ChangeName()" class="btn btn-primary"> Change Mark Name to Jordon(example of pure pipe)</button>
+    </div>
+   <div *ngFor="let emp of filteredEmployees " >    <!--  // | employeeFilter: searchTerm ,   (click)="onClick(emp.id,emp.name)"-->
+
+        <app-displayemployee [emp]=emp (notify)="handleNotify($event)" [searchTerm]="searchTerm" (notifyDelete)="handleNotifyDelete($event)">
+
+        </app-displayemployee>
+    </div>
+</div>
+
+
+<!--  -->
+<!-- <div class="container">
+    
+    <button (click)="nextEmployee()" class="btn btn-primary">View Next Employee</button>
+
+    <app-displayemployee [emp]=emptodisplay">
+
+    </app-displayemployee>
+</div> -->
